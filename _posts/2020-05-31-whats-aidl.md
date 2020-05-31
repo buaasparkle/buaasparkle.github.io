@@ -11,8 +11,11 @@ AIDL 最开始看 Android 的时候就知道个大概其，但是项目中一直
 
 # What's AIDL?
 A - Android
+
 I - Interface
+
 D - Definition
+
 L - Language
 
 # 干嘛用？
@@ -161,12 +164,11 @@ Demo 代码列到最后了，感兴趣的同学可以 clone 下来跑跑看。
 
 # 参考资料
 [Android Developer AIDL](https://developer.android.com/guide/components/aidl)
+
 [Bound services overview](https://developer.android.com/guide/components/bound-services)
-<<<<<<< HEAD
-[Android AIDL]https://android.jlelse.eu/android-aidl-937daf89e685
-=======
+
 [Android AIDL](https://android.jlelse.eu/android-aidl-937daf89e685)
->>>>>>> 29cc802... FIX: whats aidl md error
+
 [Android AIDL Deep Dive](https://medium.com/@budhdisharma/aidl-and-its-uses-in-android-e7a2520093e)
 
 # Demo地址
