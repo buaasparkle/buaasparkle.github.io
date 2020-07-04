@@ -1,0 +1,35 @@
+@startuml replugin_start_activity
+        skinparam backgroundColor #EFEFEF
+        autonumber
+
+    title: RePlugin StartActivity 时序图
+
+    participant RePlugin
+    participant Factory
+    participant PluginCommImpl
+    note over PluginCommImpl #aqua
+    负责宿主与插件、插件间的互通，
+    可通过插件的 Factory 直接调用，
+    也可通过 RePlugin 来跳转
+    end note
+    participant PluginLibraryInternalProxy
+    participant Activity
+
+    RePlugin -> Factory : startActivityForResult
+    Factory -> PluginCommImpl : startActivityForResult
+    PluginCommImpl -> PluginLibraryInternalProxy : startActivityForResult
+    activate PluginLibraryInternalProxy
+    PluginLibraryInternalProxy -> Factory : loadPluginActivity，获取 componentName
+    Factory -> PluginCommImpl: loadPluginActivity
+    activate PluginCommImpl
+    PluginCommImpl -> PluginCommImpl: 获取 ActivityInfo
+    PluginCommImpl -> PluginCommImpl: 获取 Activity 所在进程 ID
+    PluginCommImpl -> PluginCommImpl: 容器选择（启动目标进程）
+    PluginCommImpl -> PluginCommImpl: 远程分配坑位
+    PluginCommImpl -> Factory: 
+    deactivate PluginCommImpl
+    Factory -> PluginLibraryInternalProxy: 返回 ComponentName
+    PluginLibraryInternalProxy -> Activity : startActivityForResult
+    deactivate PluginLibraryInternalProxy
+
+@enduml

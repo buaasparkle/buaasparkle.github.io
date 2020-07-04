@@ -1,0 +1,19 @@
+@startuml replugin_classloader_load
+    skinparam backgroundColor #EFEFEF
+    autonumber
+
+    title: RePluginClassLoader 类加载时序图
+
+    RePluginClassLoader -> PMF : loadClass
+    PMF -> PmBase : loadClass
+    activate PmBase
+    PmBase -> PmBase: 检查 Activity 容器是否包含
+    PmBase -> PmBase: 检查 Service 容器是否包含
+    PmBase -> PmBase: 检查 Provider 容器是否包含
+    PmBase -> PmBase: 检查 自定义 类对应关系是否满足
+    PmBase -> PMF: 返回匹配的 class
+    deactivate PmBase
+    PMF -> RePluginClassLoader: 返回匹配的 class
+    RePluginClassLoader -> RePluginClassLoader : 若没有找到，再通过 origin clasloader 加载
+
+@enduml 
